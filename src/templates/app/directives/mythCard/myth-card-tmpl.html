@@ -1,0 +1,18 @@
+
+    <div>
+        <div id="cardBackground"
+             ng-class="'card-' + cardColor + '-' + cardSize"
+             ng-click="onCardClick()">
+
+            <p ng-class="'card-text-' + cardSize + '-' + cardColor">{{cardText}}</p>
+
+            <div class="centered-div-2" style="width:100%; height: 50px; bottom: 0px">
+
+                <!--img ng-src="assets/images/btn_getTheFacts.png" style="width: 100%"-->
+                <get-the-facts card-size='{{cardSize}}'
+                               parent-id={{parent.id}}></get-the-facts>
+
+            </div>
+        </div>
+    </div>
+
