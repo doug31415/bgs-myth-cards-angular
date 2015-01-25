@@ -16,8 +16,8 @@
         $stateProvider
             .state('index', {
               url: '/',
-              templateUrl: 'home.html',
-              controller: 'MainController as homeCtrl'
+              templateUrl: 'app/app.html',
+              controller: 'bgsMainCanvasController as mainCtrl'
             });
       });
 })();
