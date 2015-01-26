@@ -7,7 +7,7 @@
     bgsMainCanvasController.$inject = [ '$log', '$timeout', 'bgsAnimationService' ];
 
     function bgsMainCanvasController( $log, $timeout, bgsAnimationService ){
-        //$log.debug( 'bgsMainCanvasController LOADED');
+        $log.debug( 'bgsMainCanvasController LOADED');
 
         // -------------------------
         // vars
@@ -15,16 +15,11 @@
 
         var self = this;
 
+        // -------------------------
+        // page
+
         self.startIntroAnimation = false;
 
-        // -------------------------
-        // model
-
-        // -------------------------
-        // services
-
-        // -------------------------
-        // other
 
         // -------------------------
         // business logic
@@ -53,7 +48,7 @@
     // inject
     // -------------------------
 
-    angular.module('bgsMythApp')
+    angular.module('bgsMythCardsApp')
         .controller('bgsMainCanvasController', bgsMainCanvasController );
 
 })();

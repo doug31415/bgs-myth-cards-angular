@@ -31,7 +31,7 @@
        });
    }
 
-   gulp.task('server', ['watch:desktop'], function () {
+   gulp.task('server', ['watch'], function () {
      browserSyncInit(
        [ 'www' ],
        [ 'www/assets/**/*',
@@ -40,7 +40,7 @@
          'www/index.html' ]);
    });
 
-   gulp.task('serve:dist', ['build:desktop'], function () {
+   gulp.task('serve:dist', ['build'], function () {
      browserSyncInit('www');
    });
 

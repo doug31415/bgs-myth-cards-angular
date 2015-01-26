@@ -15,6 +15,7 @@
 
     vendor: {
       js: [
+        './bower_components/jquery/dist/jquery.js',
         './bower_components/angular/angular.js',
         './bower_components/angular-ui-router/release/angular-ui-router.js',
         './bower_components/lodash/dist/lodash.js',
@@ -139,7 +140,7 @@
    =====================================*/
 
   gulp.task('images', function () {
-    var stream = gulp.src(['./src/assets/images/**/*', './src/js/common/assets/images/**/*', '.src/assets/plugins/**/*.{jpg,png}']);
+    var stream = gulp.src(['./src/assets/images/**/*']);
 
     if (config.minify_images) {
       stream = stream.pipe(imagemin({
@@ -195,7 +196,7 @@
       .pipe(cssmin())
       .pipe(gulp.dest('css'))
       .pipe(concat('main.css'))
-      .pipe(rename({basename: "main", suffix: '.min'}))
+      .pipe(rename({basename: "app", suffix: '.min'}))
       .pipe(gulp.dest(path.join(config.dest, 'css')))
       .pipe($.size());
   });
@@ -241,7 +242,8 @@
    ======================================*/
 
   gulp.task('build', function(done) {
-    var tasks = ['html', 'fonts', 'images',  'js', 'assets', 'less'];
+    //var tasks = ['html', 'fonts', 'images',  'js', 'assets', 'less'];
+    var tasks = ['html', 'fonts',  'js', 'assets', 'less'];
     seq('clean', tasks, done);
   });
 
