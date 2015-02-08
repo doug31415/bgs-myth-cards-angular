@@ -1,0 +1,69 @@
+
+html {
+  @include  flex();
+  @include  flex-type( 1 );
+  @include  flex-box-align( stretch );
+  @include  flex-direction( row );
+  @include  box-sizing( border-box );
+  justify-content: center;
+  overflow: hidden;
+
+  height: 100%;
+  background: $app-bg;
+//  border: 10px solid #008000;
+}
+
+body {
+  @include  flex();
+  @include  flex-type( 1 );
+  @include  flex-box-align( stretch );
+  @include  flex-direction( row );
+  @include  box-sizing( border-box );
+  justify-content: center;
+  overflow: hidden;
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  margin: 0;
+  padding: 0;
+//  border: 8px solid #80073f;
+}
+
+.app-container{
+  @include  flex();
+  @include  flex-type( 1 );
+  @include  flex-box-align( stretch );
+  @include  flex-direction( row );
+  @include  box-sizing( border-box );
+  justify-content: center;
+  overflow: hidden;
+
+//  border: 6px solid #ff8000;
+}
+
+.bg-container{
+  @include  flex();
+  @include  flex-type( 1 );
+  @include  flex-box-align( stretch );
+  @include  flex-direction( row );
+  @include  box-sizing( border-box );
+  justify-content: center;
+  overflow: hidden;
+
+//  border: 5px solid #e7ff0e;
+  //  @include background-gradient( $app-bg-gradient-start, $app-bg-gradient-end);
+}
+
+.backgrounds{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  @include background-gradient( $app-bg-gradient-start, $app-bg-gradient-end);
+
+//  border: 10px solid #ff00ea;
+}
+
+

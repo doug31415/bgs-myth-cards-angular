@@ -1,0 +1,110 @@
+
+// -------------------------
+// gradients
+// -------------------------
+
+@mixin background-gradient( $from, $to ){
+  background: $from;
+  background-image: -webkit-linear-gradient(top,$from, $to);
+  background-image: -moz-linear-gradient(top, $from, $to);
+  background-image: -ms-linear-gradient(top, $from, $to);
+  background-image: -o-linear-gradient(top, $from, $to);
+  background-image: linear-gradient(to bottom, $from, $to);
+}
+
+@mixin background-radial-gradient( $hpos, $vpos, $from, $to, $pos ){
+  background-color: transparent;
+  background-image: -moz-radial-gradient($hpos $vpos, circle cover, $from, $to $pos);
+  background-image: -webkit-radial-gradient($hpos $vpos, circle cover,$from, $to $pos);
+  background-image: -o-radial-gradient($hpos $vpos, circle cover,$from, $to $pos);
+  background-image: -ms-radial-gradient($hpos $vpos, circle cover,$from, $to $pos);
+  background-image: radial-gradient($hpos $vpos, circle cover,$from, $to $pos)
+}
+
+$radial-start: #234f75;
+
+@mixin bg-radial-gradient-top(){
+  @include background-radial-gradient( 50%, 120%, lighten($radial-start, 5), black, 50% );
+}
+
+@mixin bg-radial-gradient-bottom(){
+  @include background-radial-gradient( 50%, 0%, darken($radial-start, 20), black, 38% );
+}
+
+// -------------------------
+// box shadow
+// -------------------------
+
+@mixin box-shadow( $type, $h, $v, $blur, $spread, $color ){
+  -moz-box-shadow:$type $h $v $blur $spread $color;
+  -webkit-box-shadow:$type $h $v $blur $spread $color;
+  box-shadow:$type $h $v $blur $spread $color;
+}
+
+// -------------------------
+// flex boxes
+// -------------------------
+
+@mixin flex(){
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-type( $val ){
+  -webkit-box-flex:  $val;
+  -moz-box-flex:  $val;
+  -webkit-flex:  $val;
+  -ms-flex:  $val;
+  flex:  $val;
+}
+
+@mixin flex-box-align( $val ){
+  -webkit-box-align: $val;
+  -moz-box-align: $val;
+  -ms-flex-align: $val;
+  -webkit-align-items: $val;
+  align-items: $val;
+}
+
+@mixin flex-direction( $val ){
+  flex-direction: $val;
+  -webkit-flex-direction: $val;
+}
+
+@mixin flex-direction( $val ){
+  flex-direction: $val;
+  -webkit-flex-direction: $val;
+}
+
+@mixin flex-flow( $val ){
+  flex-flow: $val;
+  -webkit-flex-flow: $val;
+}
+
+@mixin flex-wrap( $val ){
+
+  -webkit-flex-wrap: $val;
+  -ms-flex-wrap: $val;
+  flex-wrap: $val;
+}
+
+@mixin flex-justify-content( $val ){
+  @if( $val == space-around ){
+    -ms-flex-pack: justify;
+  }
+  @else {
+    -ms-flex-pack: $val;
+  }
+
+  -webkit-justify-content: $val;
+  justify-content: $val;
+}
+
+@mixin box-sizing( $val ){
+  -moz-box-sizing: $val;
+  -webkit-box-sizing: $val;
+  box-sizing: $val;
+}

@@ -1,0 +1,98 @@
+/* -----------------------------
+  backgrounds
+/* ----------------------------- */
+
+
+.horizon-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+
+  .gradient-top{
+    @include  flex();
+    @include bg-radial-gradient-top();
+    height: 50%;
+    opacity: 0;
+    order: 1;
+  }
+
+  .gradient-bottom{
+    @include  flex();
+    @include bg-radial-gradient-bottom();
+    height: 50%;
+    opacity: 0;
+    order: 2;
+  }
+
+//    border: 4px solid #00fb00;
+}
+
+.rays-container-bottom{
+  position: absolute;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+
+  .raysBottom{
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    top: 0;
+    left: -40%;
+    height: 150%;
+    width: 200%;
+    background-image: url("../assets/images/bgRaysTopReflection.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    //  background-position: left top;
+    opacity: 0;
+    z-index: 2;
+  }
+
+//    border: 10px solid #84dbfb;
+}
+
+
+
+
+.startPageBackgroundTop{
+  @include  flex();
+  top: 0px;
+  height: 300px;
+  width: 980px;
+  background-image: url("../assets/images/bgTop.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-color: transparent;
+  opacity: 0;
+  z-index: 5;
+}
+
+.startPageBackgroundFloor{
+  position: fixed;
+  margin-right: auto;
+  margin-left: auto;
+  top: 300px;
+  height: 100%;
+  width: 980px;
+  background-image: url("../assets/images/bgBottom.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-color: transparent;
+  opacity: 0;
+  z-index: 4;
+}
+
+
+
+
+
+
+
