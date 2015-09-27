@@ -5,9 +5,9 @@
 (function(){
   'use strict';
 
-  bottomRaysAnime.$inject = ['$log' ,'EASE'];
+  bgsFooterAnimation.$inject = ['$log', 'EASE'];
 
-  function bottomRaysAnime( $log, EASE ){
+  function bgsFooterAnimation( $log, EASE ){
 
 
 
@@ -35,11 +35,10 @@
     // --------------------
 
     function beforeAddClass( element, className, done ){
-      //$log.debug('bottomRaysAnime.beforeAddClass', className);
+      //$log.debug('bgsFooterAnimation.beforeAddClass', className);
 
-      if( className === 'bottomRaysAnime' ){
-        TweenMax.set( element, {autoAlpha:0});
-        TweenMax.to( element, EASE.long, {autoAlpha: .65, rotationX:70, transformOrigin:'30% 0%', transformPerspective:700, delay: 0});
+      if( className === 'bgsFooterAnimation' ){
+        TweenMax.to( element, EASE.long, {delay: 1, autoAlpha: 1, ease:Linear.easeOut, onComplete:done });
       }
       else {
         done();
@@ -47,20 +46,18 @@
     }
 
     function beforeRemoveClass( element, className, done ){
-      //$log.debug('bottomRaysAnime.beforeRemoveClass', className);
+      //$log.debug('bgsFooterAnimation.beforeRemoveClass', className);
 
-      if( className === 'bottomRaysAnime' ){
-        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:onRemoveComplete, onCompleteParams:[element, done] });
+      if( className === 'bgsFooterAnimation' ){
+        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:done });
       }
       else {
         done();
       }
     }
 
-    function onRemoveComplete( element, done ){
-      $log.debug('bottomRaysAnime.onRemoveComplete');
-      TweenMax.set( element, {autoAlpha:0});
-      done();
+    function onRemoveComplete(){
+      $log.debug('bgsFooterAnimation.onRemoveComplete');
 
     }
 
@@ -72,6 +69,6 @@
   // --------------------
 
   angular.module( 'bgsMythCardsApp' )
-      .animation( '.bottomRaysAnime', bottomRaysAnime );
+      .animation( '.bgsFooterAnimation', bgsFooterAnimation );
 
 })();

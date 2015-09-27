@@ -5,9 +5,9 @@
 (function(){
   'use strict';
 
-  bkgrndAnime.$inject = ['$log', 'anime'];
+  bkgrndAnime.$inject = ['$log', 'EASE'];
 
-  function bkgrndAnime( $log, anime ){
+  function bkgrndAnime( $log, EASE ){
 
 
 
@@ -35,10 +35,10 @@
     // --------------------
 
     function beforeAddClass( element, className, done ){
-      $log.debug('bkgrndAnime.beforeAddClass', className);
+      //$log.debug('bkgrndAnime.beforeAddClass', className);
 
       if( className === 'bkgrndAnime' ){
-        TweenMax.to( element, 1, {autoAlpha: 1, ease:Linear.easeOut, onComplete:pingComplete });
+        TweenMax.to( element, EASE.long, {autoAlpha: 1, ease:Linear.easeOut, onComplete:done });
       }
       else {
         done();
@@ -46,18 +46,18 @@
     }
 
     function beforeRemoveClass( element, className, done ){
-      $log.debug('bkgrndAnime.beforeRemoveClass', className);
+      //$log.debug('bkgrndAnime.beforeRemoveClass', className);
 
       if( className === 'bkgrndAnime' ){
-        TweenMax.to( element, anime.EASE_DUR, {autoAlpha: 0, ease:Linear.easeOut, onComplete:done });
+        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:done });
       }
       else {
         done();
       }
     }
 
-    function pingComplete(){
-      $log.debug('bkgrndAnime.pingComplete');
+    function onRemoveComplete(){
+      $log.debug('bkgrndAnime.onRemoveComplete');
 
     }
 

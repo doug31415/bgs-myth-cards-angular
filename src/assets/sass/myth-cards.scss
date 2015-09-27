@@ -1,0 +1,47 @@
+/* -----------------------------
+  backgrounds
+/* ----------------------------- */
+
+@mixin myth-card-wrapper(){
+  position:relative;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+
+  border: 1px solid red;
+
+  height: 100%;
+  width: 32%;
+
+//  margin-left: auto;
+//  margin-right: auto;
+//  z-index: 0;
+}
+
+.card-wrapper-blue{
+  @include myth-card-wrapper;
+
+  .card{
+    @include img-bkgrnd-fill-to-scale( "../assets/images/card_blue.png" )
+  }
+}
+
+.card-wrapper-green{
+  @include myth-card-wrapper;
+
+  .card{
+    @include img-bkgrnd-fill-to-scale( "../assets/images/card_green.png" )
+  }
+}
+
+.card-wrapper-orange{
+  @include myth-card-wrapper;
+
+  .card{
+    @include img-bkgrnd-fill-to-scale( "../assets/images/card_orange.png" )
+  }
+}
+
+
+
+

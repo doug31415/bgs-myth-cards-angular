@@ -6,7 +6,6 @@
   bgsMythCard.$inject = ['$log'];
 
   function bgsMythCard( $log ){
-    //$log.debug( 'bgsMythCard.LOADED');
 
   // --------------------
   // vars
@@ -19,12 +18,15 @@
   var directive = {
     restrict: 'EA',
     replace: true,
+    transclude: false,
     scope: {
-      cardType:'@cardType',
+      cardId: '@cardId',   // the dom id property - so we can grab it for animation
+      cardPid: '@cardPid',  // the PID we use to reference its properties, irrespective of its dom id
+      cardColor:'@cardColor',
       cardText:'@cardText',
       cardSize: '@cardSize'
     },
-    link: link,
+    controller: controller,
     templateUrl: 'app/directives/mythCard/myth-card-tmpl.html'
   };
 
@@ -34,27 +36,15 @@
   // functions
   // --------------------
 
-    function link( scope, elem, attrs ){
+    function controller( $scope, $rootScope ){
 
-      var self = scope;
-
-      self.getCardClass = function(){
-        $log.debug( 'bgsMythCard.getCardClass', scope.cardType);
-        return 'card-wrapper-' + scope.cardType;
-      };
-
-      self.onClick = function(){
-
-        $log.debug( 'bgsMythCard.onClick');
-        $log.debug( '...cardType', self.cardType);
-        $log.debug( '...cardText', self.cardText);
-        $log.debug( '...cardSize', self.cardSize);
+      $scope.onCardClick = function(){
 
         $rootScope.$broadcast( 'MYTH_BTN_CLICK_' + $scope.cardId,
             {
-              cardType: self.cardType,
-              cardId: self.cardId,
-              cardPid: self.cardPid
+              cardColor: $scope.cardColor,
+              cardId: $scope.cardId,
+              cardPid: $scope.cardPid
             }
         );
       };
@@ -66,7 +56,7 @@
   // inject
   // --------------------
 
-  angular.module( 'bgsMythCardsApp' )
-    .directive( 'bgsMythCard', bgsMythCard );
+  //angular.module( 'bgsMythCardsApp' )
+  //  .directive( 'bgsMythCard', bgsMythCard );
 
 })();

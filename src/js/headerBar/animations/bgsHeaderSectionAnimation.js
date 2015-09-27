@@ -5,9 +5,9 @@
 (function(){
   'use strict';
 
-  bottomRaysAnime.$inject = ['$log' ,'EASE'];
+  bgsHeaderSectionAnimation.$inject = ['$log', 'EASE'];
 
-  function bottomRaysAnime( $log, EASE ){
+  function bgsHeaderSectionAnimation( $log, EASE ){
 
 
 
@@ -35,11 +35,11 @@
     // --------------------
 
     function beforeAddClass( element, className, done ){
-      //$log.debug('bottomRaysAnime.beforeAddClass', className);
+      //$log.debug('bgsHeaderSectionAnimation.beforeAddClass', className);
 
-      if( className === 'bottomRaysAnime' ){
-        TweenMax.set( element, {autoAlpha:0});
-        TweenMax.to( element, EASE.long, {autoAlpha: .65, rotationX:70, transformOrigin:'30% 0%', transformPerspective:700, delay: 0});
+      if( className === 'headerSectionAnimation' ){
+        TweenMax.set( element, {autoAlpha: 0});
+        TweenMax.to( element, EASE.medium, {autoAlpha: 1, ease:Power2.easeOut, onComplete:done });
       }
       else {
         done();
@@ -47,10 +47,10 @@
     }
 
     function beforeRemoveClass( element, className, done ){
-      //$log.debug('bottomRaysAnime.beforeRemoveClass', className);
+      //$log.debug('bgsHeaderSectionAnimation.beforeRemoveClass', className);
 
-      if( className === 'bottomRaysAnime' ){
-        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:onRemoveComplete, onCompleteParams:[element, done] });
+      if( className === 'headerSectionAnimation' ){
+        TweenMax.to( element, EASE.medium, {autoAlpha: 0, ease:Power2.easeOut, onComplete:onRemoveComplete, onCompleteParams: [element, done] });
       }
       else {
         done();
@@ -58,8 +58,9 @@
     }
 
     function onRemoveComplete( element, done ){
-      $log.debug('bottomRaysAnime.onRemoveComplete');
-      TweenMax.set( element, {autoAlpha:0});
+      //$log.debug('bgsHeaderSectionAnimation.onRemoveComplete');
+
+      TweenMax.set( element, {autoAlpha: 0});
       done();
 
     }
@@ -72,6 +73,6 @@
   // --------------------
 
   angular.module( 'bgsMythCardsApp' )
-      .animation( '.bottomRaysAnime', bottomRaysAnime );
+      .animation( '.headerSectionAnimation', bgsHeaderSectionAnimation );
 
 })();

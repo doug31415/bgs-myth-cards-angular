@@ -1,58 +1,103 @@
 
-html {
-  @include  flex();
-  @include  flex-type( 1 );
-  @include  flex-box-align( stretch );
-  @include  flex-direction( row );
-  @include  box-sizing( border-box );
-  justify-content: center;
-  overflow: hidden;
-
-  height: 100%;
-  background: $app-bg;
-//  border: 10px solid #008000;
-}
-
-body {
-  @include  flex();
-  @include  flex-type( 1 );
-  @include  flex-box-align( stretch );
-  @include  flex-direction( row );
-  @include  box-sizing( border-box );
-  justify-content: center;
-  overflow: hidden;
-
+html, body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
 
   margin: 0;
   padding: 0;
-//  border: 8px solid #80073f;
+
+  background: $app-bg;
+  //  border: 8px solid #80073f;
 }
 
 .app-container{
-  @include  flex();
-  @include  flex-type( 1 );
-  @include  flex-box-align( stretch );
-  @include  flex-direction( row );
-  @include  box-sizing( border-box );
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   overflow: hidden;
+  z-index: $z-app;
 
-//  border: 6px solid #ff8000;
+  //  border: 6px solid #ff8000;
 }
+
+.header-container{
+  position: fixed;
+  top: 35px;
+
+  height: $header-height;
+  width: 100%;
+
+  z-index: $z-header;
+
+  //  border: 6px solid red;
+}
+
+.start-page-card-container{
+  position: fixed;
+  //  visibility: hidden;
+  //  opacity: 0;
+
+  height: 65%;
+  width: 100%;
+
+  top: 50%;
+  transform: translateY(-43%);
+
+  z-index: $z-header;
+
+  //  border: 4px solid #00fb00;
+}
+
+.start-cards-by-type-container{
+  position: fixed;
+  //  visibility: hidden;
+  //  opacity: 0;
+
+  height: 28%;
+  width: 100%;
+
+  top: 56%;
+  z-index: $z-header + 1;
+
+  border: 4px solid #00fb00;
+}
+
+
+.myth-explorer-container{
+  position: fixed;
+  //  visibility: hidden;
+  //  opacity: 0;
+
+  height: 65%;
+  width: 100%;
+
+  top: 50%;
+  transform: translateY(-43%);
+
+  z-index: $z-header;
+
+  //  border: 4px solid #00fb00;
+}
+
 
 .bg-container{
-  @include  flex();
-  @include  flex-type( 1 );
-  @include  flex-box-align( stretch );
-  @include  flex-direction( row );
-  @include  box-sizing( border-box );
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   overflow: hidden;
 
-//  border: 5px solid #e7ff0e;
-  //  @include background-gradient( $app-bg-gradient-start, $app-bg-gradient-end);
+  z-index: $z-bkgrnds;
+
+  //  border: 1px solid greenyellow;
 }
+
 
 .backgrounds{
   position: absolute;
@@ -63,7 +108,19 @@ body {
   overflow: hidden;
   @include background-gradient( $app-bg-gradient-start, $app-bg-gradient-end);
 
-//  border: 10px solid #ff00ea;
+  //  border: 5px solid #ff00ea;
+}
+
+.footer-container{
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  height: $footer-height;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  z-index: $z-header;
 }
 
 

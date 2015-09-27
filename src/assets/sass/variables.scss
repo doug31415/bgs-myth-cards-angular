@@ -2,3 +2,19 @@
 $app-bg:  #000418;
 $app-bg-gradient-start: $app-bg;
 $app-bg-gradient-end: #3f608a;
+
+$brand-blue: #00a9e0;
+$brand-blue-dark: #092F93;
+
+$white: #ffffff;
+$black: #000000;
+
+// z indices
+$z-app: 1;
+$z-bkgrnds: 2;
+$z-header: 100;
+
+
+$header-height: 65px;
+$header-width: 750px;
+$footer-height: 35px;

@@ -8,9 +8,16 @@
         'ngAnimate'
       ])
 
-    .constant( 'anime', {
-      'TweenMax': TweenMax,
-      'EASE_DUR' :.35
+    .constant( 'ANIME_EVENTS', {
+      startIntro: 'startIntro'
+    })
+
+    .constant( 'EASE', {
+      'xlong': 1.5,
+      'long': 1,
+      'medium':.5,
+      'short':.35,
+      'xshort':.2
     } )
 
       .config(function( $stateProvider, $urlRouterProvider ){
@@ -26,7 +33,6 @@
             .state('start', {
               url: 'start',
               templateUrl: 'app/app.html'
-              //template: '<div><h3>HERE TOO</h3></div>'
             });
       })
 

@@ -12,6 +12,30 @@
   background-image: linear-gradient(to bottom, $from, $to);
 }
 
+@mixin gradient-horizontal( $from, $to ){
+  background: $from; /* Old browsers */
+  background: -moz-linear-gradient(left,  $from 0%, $to 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$from), color-stop(100%,$to)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  $from 0%,$to 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  $from 0%,$to 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  $from 0%,$to 100%); /* IE10+ */
+  background: linear-gradient(to right,  $from 0%,$to 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+
+}
+
+@mixin gradient-diagonal( $from, $to, $deg ){
+  background: $from; /* Old browsers */
+  background: -moz-linear-gradient($deg,  $from 0%, $to 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,$from), color-stop(100%,$to)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient($deg,  $from 0%,$to 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient($deg,  $from 0%,$to 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient($deg,  $from 0%,$to 100%); /* IE10+ */
+  background: linear-gradient($deg,  $from 0%,$to 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
 @mixin background-radial-gradient( $hpos, $vpos, $from, $to, $pos ){
   background-color: transparent;
   background-image: -moz-radial-gradient($hpos $vpos, circle cover, $from, $to $pos);
@@ -24,12 +48,27 @@
 $radial-start: #234f75;
 
 @mixin bg-radial-gradient-top(){
-  @include background-radial-gradient( 50%, 120%, lighten($radial-start, 5), black, 50% );
+  @include background-radial-gradient( 50%, 120%, lighten($radial-start, 5), black, 75% );
 }
 
 @mixin bg-radial-gradient-bottom(){
   @include background-radial-gradient( 50%, 0%, darken($radial-start, 20), black, 38% );
 }
+
+// -------------------------
+// image fills to scale background
+// -------------------------
+@mixin img-bkgrnd-fill-to-scale( $url ){
+  position:absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url( $url );
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;
+}
+
 
 // -------------------------
 // box shadow

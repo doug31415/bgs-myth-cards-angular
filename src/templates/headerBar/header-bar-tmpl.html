@@ -1,49 +1,42 @@
 
-<div id="headerBarContainer"
-     class="centered-div"
-     style="top:10px; width: 750px">
 
-    <img id="logo"
-         ng-src="assets/images/logoTextSBO.png"
-         ng-show="showHeaderElements"
-         style="position: relative; top: 10px; left: 10px; height: 40px">
+<div class="header-bar-container">
 
+  <div class="left"
+       ng-class="{'headerSectionAnimation' : headerCtrl.showHeaderLeft}">
 
-    <img id="logoBar"
-         ng-src="assets/images/logoBar.png"
-         ng-show="showHeaderElements"
-         style="position: absolute; top: 55px; left: 10px; width: 550px">
+    <img class="header-logo-text"
+         ng-src="assets/images/logoTextSBO.png">
 
-    <img id="phoneNumberImage"
-         ng-show="showHeaderElements"
-         ng-src="assets/images/phoneNumber.png"
-         ng-mouseover="onPhoneNumberMouseOver()"
-         ng-mouseout="onPhoneNumberMouseOut()"
-         style="width: 200px; position: absolute; top: -15px; right: -10px">
+    <div class="header-rule"></div>
+  </div>
 
-    <img id="phoneNumberPopup"
-         ng-src="assets/images/phoneNumberRollover.png"
-         ng-show="showPopup"
-         class="z-200"
-         style="position:absolute; right: 25px; top:60px; width: 180px">
+  <div class="right"
+       ng-class="{'headerSectionAnimation' : headerCtrl.showHeaderRight}">>
 
-    <div style="position: absolute; width: 100px; top: 65px; right: 10px">
+    <div class="header-contact-info"
+         ng-mouseover="headerCtrl.showPhoneRollover = true"
+         ng-mouseleave="headerCtrl.showPhoneRollover = false">
 
-        <img id="facebookBug"
-             ng-src="assets/images/bug_facebook.png"
-             ng-show="showHeaderElements"
-             style="float: right;" >
+      <img src="assets/images/phoneNumberCropped.png">
 
-        <img id="linkedInBug"
-             ng-src="assets/images/bug_linkedin.png"
-             ng-show="showHeaderElements"
-             style="float: right; padding-right: 7px">
-
-        <img id="twitterBug"
-             ng-src="assets/images/bug_twitter.png"
-             ng-show="showHeaderElements"
-             style="float: right; padding-right: 7px">
+      <div class="bugs">
+        <div class="bug">
+          <img src="assets/images/bug_facebook.png">
+        </div>
+        <div class="bug">
+          <img src="assets/images/bug_linkedin.png">
+        </div>
+        <div class="bug">
+          <img src="assets/images/bug_twitter.png">
+        </div>
+      </div>
     </div>
 
+    <img class="header-phone-rollover"
+         ng-class="{'phoneRollover': headerCtrl.showPhoneRollover}"
+         src="assets/images/phoneNumberRolloverCropped.png">
+
+  </div>
 </div>
 
