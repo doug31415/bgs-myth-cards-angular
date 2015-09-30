@@ -5,8 +5,13 @@
 
   angular.module('bgsMythCardsApp',
       [ 'ui.router',
+        'ngAnimate',
         'mobile-angular-ui'
       ])
+
+      .constant( 'animations', {
+        'TweenMax': TweenMax
+      } )
 
       .config(function( $stateProvider, $urlRouterProvider ){
         // ----------------------------

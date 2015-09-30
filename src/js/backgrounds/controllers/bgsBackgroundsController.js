@@ -52,7 +52,7 @@
         };
 
         self.introAnimation = function(){
-            console.log('bgsBackgroundsController.introAnimation');
+            $log.debug('bgsBackgroundsController.introAnimation');
 
             TweenLite.to( startPageBackgroundTop, 1, {autoAlpha:1, delay: 0} );
             TweenLite.to( startPageBackgroundFloor, 1, {autoAlpha:1, zIndex:-60, rotationX:70, transformOrigin:'50% 0%', transformPerspective:700, delay: 0} );
@@ -71,7 +71,7 @@
         };
 
         self.onAddMythExplorerBackgroundComplete = function () {
-            console.log('BackgroundsController.onAddMythExplorerBackgroundComplete');
+            $log.debug('BackgroundsController.onAddMythExplorerBackgroundComplete');
             self.showStartPageBackground = false;
         };
 
@@ -80,22 +80,28 @@
         // -------------------------
 
         $scope.$on( bgsAnimationService.ADD_START_BACKGROUND, function(){
-            console.log ('bgsBackgroundsController.ADD_START_BACKGROUND' );
+            $log.debug ('bgsBackgroundsController.ADD_START_BACKGROUND' );
             $scope.introAnimationSetup();
         });
 
         $scope.$on('broadcastNavigateToStartPage', function(){
-            console.log ('bgsBackgroundsController.onBroadcastNavigateToStartPage' );
+            $log.debug ('bgsBackgroundsController.onBroadcastNavigateToStartPage' );
         });
 
         $scope.$on( bgsAnimationService.ADD_MYTH_EXPLORER_BACKGROUND, function(){
-            console.log ('bgsBackgroundsController.ADD_MYTH_EXPLORER_BACKGROUND' );
+            $log.debug ('bgsBackgroundsController.ADD_MYTH_EXPLORER_BACKGROUND' );
             $scope.addMythExplorerBackground()
         });
 
         $scope.$on( bgsNavigationService.COMPARE_PLANS_STATE, function(){
-            console.log('bgsBackgroundsController.COMPARE_PLANS_STATE()');
+            $log.debug('bgsBackgroundsController.COMPARE_PLANS_STATE()');
             $scope.addMythExplorerBackground()    });
+
+        // -------------------------
+        // init
+        // -------------------------
+        self.init();
+
 
     }// END CLASS
 

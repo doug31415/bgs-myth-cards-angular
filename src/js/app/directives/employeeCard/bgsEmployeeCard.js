@@ -39,7 +39,7 @@
 
         function controller( $scope, $rootScope ) {
 
-            console.log( '...cardType', $scope.cardType );
+            $log.debug( '...cardType', $scope.cardType );
 
             $scope.onClick = function() {
                 $rootScope.$broadcast( $scope.cardEvent );

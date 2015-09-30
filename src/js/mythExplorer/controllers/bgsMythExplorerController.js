@@ -56,7 +56,7 @@
     // -------------------------
 
       self.init = function () {
-          //console.log('MythExplorerController.init');
+          //$log.debug('MythExplorerController.init');
 
           self.title = bgsMythExplorerModel.numEmployeesTitleText;
           self.subtitle = bgsMythExplorerModel.numEmployeesSubtitleText;
@@ -111,7 +111,7 @@
       };
 
       self.onAddBlotterComplete = function ( then ) {
-          console.log('MythExplorerController.onAddBlotterComplete then = ' + then );
+          $log.debug('MythExplorerController.onAddBlotterComplete then = ' + then );
 
           if( then == NavigationService.EXPLORER_NUM_EMPLOYEE_STATE ){
               self.addEmployeeCards();
@@ -183,7 +183,7 @@
 
       self.showMythCards = function () {
 
-          console.log( 'MythExplorerController.showMythCards' );
+          $log.debug( 'MythExplorerController.showMythCards' );
 
           self.employeeCardsHidden = true;
           self.title = self.queuedTitle;
@@ -203,7 +203,7 @@
       // animation on myth card click
 
       self.onMythCardClick = function( card, removeArray ){
-          console.log ('MythExplorerController.onMythCardClick' );
+          $log.debug ('MythExplorerController.onMythCardClick' );
 
           TweenLite.set( factPad, {alpha:0});
           TweenLite.set( didYouKnowTextArea, {alpha:0});
@@ -224,7 +224,7 @@
       };
 
       self.onMoveMythCardComplete = function () {
-          console.log('MythExplorerController.onMoveMythCardComplete');
+          $log.debug('MythExplorerController.onMoveMythCardComplete');
 
           self.lingoTextHidden = true;
           self.topTextAreaHidden = true;
@@ -242,7 +242,7 @@
       };
 
       self.onRemoveMythCardComplete = function () {
-          console.log('MythExplorerController.onRemoveMythCardComplete');
+          $log.debug('MythExplorerController.onRemoveMythCardComplete');
 
           self.mythCardClickEnabled = false;
 
@@ -281,7 +281,7 @@
       // on next/back
 
       self.onNext = function () {
-          console.log('MythExplorerController.onNext');
+          $log.debug('MythExplorerController.onNext');
 
           self.currentCardIndex++;
 
@@ -303,7 +303,7 @@
       };
 
       self.onPrev = function () {
-          console.log('MythExplorerController.onPrev');
+          $log.debug('MythExplorerController.onPrev');
 
           self.currentCardIndex--;
 
@@ -327,10 +327,10 @@
 
 
       self.onFlipOutComplete = function(){
-          console.log ('MythExplorerController.onFlipOutComplete' );
+          $log.debug ('MythExplorerController.onFlipOutComplete' );
 
           $.each( self.mythCardArray, function( idx, card ){
-              console.log ('...card = ' + JSON.stringify( card.id ) );
+              $log.debug ('...card = ' + JSON.stringify( card.id ) );
               card.style.zIndex = 200 - idx;
 
           });
@@ -342,7 +342,7 @@
       };
 
       self.flipBackIn = function(){
-          console.log ('MythExplorerController.flipBackIn' );
+          $log.debug ('MythExplorerController.flipBackIn' );
 
           $.each( self.mythCardArray, function( idx, card ){
               var rotation = 370 - (idx * 5);
@@ -359,9 +359,9 @@
 
           var cardData = self.getCurrentCardData();
 
-          console.log('MythExplorerController.onFactsFadedOut');
-          console.log('...cardData.cardColor: ' + cardData.color);
-          console.log('...cardData.cardPid: ' + cardData.pid);
+          $log.debug('MythExplorerController.onFactsFadedOut');
+          $log.debug('...cardData.cardColor: ' + cardData.color);
+          $log.debug('...cardData.cardPid: ' + cardData.pid);
 
           self.factTextArray = bgsFactModel.getFacts(cardData.color, cardData.pid);
 
@@ -383,7 +383,7 @@
     // listeners
 
       $scope.$on( NavigationService.START_STATE, function(){
-          console.log ('MythExplorerController.START_STATE' );
+          $log.debug ('MythExplorerController.START_STATE' );
       });
 
       $scope.$on( NavigationService.EXPLORER_NUM_EMPLOYEE_STATE, function(){
@@ -407,7 +407,7 @@
       // specific listeners for myth buttons on this page
 
       $scope.$on('MYTH_BTN_CLICK_myth_card_0', function( event, data){
-          console.log ('MythExplorerController.MYTH_BTN_CLICK_myth_card_0' );
+          $log.debug ('MythExplorerController.MYTH_BTN_CLICK_myth_card_0' );
 
           // prevents clicks on the cards once they are moved to the upper left
           if( !self.mythCardClickEnabled ) return;
@@ -421,7 +421,7 @@
       });
 
       $scope.$on('MYTH_BTN_CLICK_myth_card_1', function( event, data){
-          console.log ('MythExplorerController.MYTH_BTN_CLICK_myth_card_1' );
+          $log.debug ('MythExplorerController.MYTH_BTN_CLICK_myth_card_1' );
 
           // prevents clicks on the cards once they are moved to the upper left
           if( !$scope.mythCardClickEnabled ) return;
@@ -435,7 +435,7 @@
       });
 
       $scope.$on('MYTH_BTN_CLICK_myth_card_2', function( event, data){
-          console.log ('MythExplorerController.MYTH_BTN_CLICK_myth_card_2' );
+          $log.debug ('MythExplorerController.MYTH_BTN_CLICK_myth_card_2' );
 
           // prevents clicks on the cards once they are moved to the upper left
           if( !$scope.mythCardClickEnabled ) return;
@@ -452,7 +452,7 @@
       // ------------------------------------
 
       $scope.$on('broadcastSoleClick', function(){
-          console.log ('MythExplorerController.broadcastSoleClick' );
+          $log.debug ('MythExplorerController.broadcastSoleClick' );
 
           self.queuedTitle = bgsMythExplorerModel.soleTitle;
           self.queuedSubtitle = bgsMythExplorerModel.soleText;
@@ -463,7 +463,7 @@
       });
 
       $scope.$on('broadcastTwoTenClick', function(){
-          console.log ('MythExplorerController.broadcastTwoTenClick' );
+          $log.debug ('MythExplorerController.broadcastTwoTenClick' );
 
           self.queuedTitle = bgsMythExplorerModel.fiveToTenTitle;
           self.queuedSubtitle = bgsMythExplorerModel.fiveToTenText;
@@ -475,7 +475,7 @@
       });
 
       $scope.$on('broadcastMidSizeClick', function(){
-          console.log ('MythExplorerController.broadcastMidSizeClick' );
+          $log.debug ('MythExplorerController.broadcastMidSizeClick' );
 
           self.queuedTitle = bgsMythExplorerModel.midSizeTitle;
           self.queuedSubtitle = bgsMythExplorerModel.midSizeText;

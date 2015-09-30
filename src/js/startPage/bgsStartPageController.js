@@ -83,13 +83,13 @@
         };
 
         self.getCardInfo = function (type, id) {
-            console.log('StartPageController.getCardInfo()');
-            console.log('...type: ' + type);
-            console.log('...id: ' + id);
+            $log.debug('StartPageController.getCardInfo()');
+            $log.debug('...type: ' + type);
+            $log.debug('...id: ' + id);
 
             var cardInfo = bgsMythCardModel.getMythCardInfo(type, id);
 
-            console.log('...cardInfo: ' + JSON.stringify(cardInfo));
+            $log.debug('...cardInfo: ' + JSON.stringify(cardInfo));
 
             return cardInfo;
         };
@@ -195,7 +195,7 @@
         // -------------------------
         // listeners
         $scope.$on( bgsNavigationService.COMPARE_PLANS_STATE, function(){
-            console.log('bgsStartPageController.COMPARE_PLANS_STATE()');
+            $log.debug('bgsStartPageController.COMPARE_PLANS_STATE()');
             self.removeStartContainer();
         });
 

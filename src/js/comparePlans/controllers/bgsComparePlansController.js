@@ -30,7 +30,7 @@
         // -------------------------
 
         self.init = function () {
-            //console.log('ComparePlansController.init');
+            //$log.debug('ComparePlansController.init');
 
             self.isHidden = true;
             self.cardsHidden = true;
@@ -62,11 +62,11 @@
         // on next/back
 
         self.onNext = function () {
-            console.log('bgsComparePlansController.onNext');
+            $log.debug('bgsComparePlansController.onNext');
         };
 
         self.onPrev = function () {
-            console.log('bgsComparePlansController.onPrev');
+            $log.debug('bgsComparePlansController.onPrev');
         };
 
         // -------------------------

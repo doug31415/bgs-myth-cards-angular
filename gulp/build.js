@@ -16,11 +16,11 @@
     vendor: {
       js: [
         './bower_components/jquery/dist/jquery.js',
-        './bower_components/angular/angular.js',
-        './bower_components/angular-ui-router/release/angular-ui-router.js',
         './bower_components/lodash/dist/lodash.js',
-        './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
-        './bower_components/greensock/src/uncompressed/**/*'
+        './bower_components/angular/angular.js',
+        './node_modules/angular-animate/angular-animate.js',
+        './bower_components/angular-ui-router/release/angular-ui-router.js',
+        './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js'
       ],
 
       fonts: [
@@ -153,6 +153,11 @@
     return stream.pipe(gulp.dest(path.join(config.dest, 'assets/images')));
   });
 
+  gulp.task('img', function() {
+    return gulp.src( ['./src/assets/images/**/*'])
+        .pipe(gulp.dest(path.join(config.dest, 'assets/images')));
+  });
+
   /*=========================================
    =               styles                   =
    =========================================*/
@@ -209,17 +214,31 @@
 
   gulp.task('js', function() {
     streamqueue({ objectMode: true },
-      gulp.src(config.vendor.js),
-      gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
+        gulp.src(config.vendor.js),
+        gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
+        gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
     )
-      .pipe(sourcemaps.init())
-      .pipe(concat('app.js'))
-      .pipe(ngAnnotate())
+        .pipe(sourcemaps.init())
+        .pipe(concat('app.js'))
+        .pipe(ngAnnotate())
       //.pipe(uglify())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(path.join(config.dest, 'js')));
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(path.join(config.dest, 'js')));
+  });
+
+  gulp.task('greensock', function() {
+    streamqueue({ objectMode: true },
+        gulp.src(config.vendor.js),
+        gulp.src('./bower_components/greensock/src/uncompressed/**/*.js').pipe(ngFilesort())
+    )
+        .pipe(sourcemaps.init())
+        .pipe(concat('greensock.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(path.join(config.dest, 'js')));
   });
 
 
@@ -229,9 +248,12 @@
 
   gulp.task('html', function() {
     var inject = [];
-    if (config.cordova) {
-      inject.push('<script src="cordova.js"></script>');
-    }
+    //if (config.cordova) {
+    //  inject.push('<script src="cordova.js"></script>');
+    //}
+
+    //inject.push('<script src="js/greensock.js"></script>');
+
     gulp.src(['src/index.html'])
         .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
         .pipe(gulp.dest(config.dest));
@@ -243,7 +265,7 @@
 
   gulp.task('build', function(done) {
     //var tasks = ['html', 'fonts', 'images',  'js', 'assets', 'less'];
-    var tasks = ['html', 'fonts',  'js', 'assets', 'less'];
+    var tasks = ['html', 'fonts', 'img', 'js', 'assets', 'less'];
     seq('clean', tasks, done);
   });
 
