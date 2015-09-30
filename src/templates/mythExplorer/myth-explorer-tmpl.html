@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <div class="blotter-bkgrnd">
   <div class="frame">
     <div class="content">
@@ -7,3 +8,179 @@
     </div>
   </div>
 </div>
+=======
+
+<div id="mythExplorerContainer"
+     ng-hide="containerHidden"
+     class="centered-div"
+     style="width: 750px; height: 700px;">
+
+
+    <!-- !------------------! -->
+    <!-- BLOTTER area -->
+    <!-- !------------------! -->
+     <div id="blotter"
+          style="position: absolute; width: 750px; height:500px; top: 100px">
+
+        <img ng-src="assets/images/blotter.png"
+             style="position: absolute; width: 750px;">
+     </div>
+
+    <!-- !------------------! -->
+    <!-- MYTH CARDS area -->
+    <!-- !------------------! -->
+    <div id="mythCards"
+         ng-hide="mythCardsHidden"
+         style="position: absolute; width: 750px; height:500px; top: 100px">
+
+        <div>
+
+            <myth-card id="myth_card_0"
+                       card-id="myth_card_0"
+                       card-pid="{{mythCardDataModel['myth_card_0'].pid}}"
+                       card-color="{{mythCardDataModel['myth_card_0'].color}}"
+                       card-text="{{mythCardDataModel['myth_card_0'].text}}"
+                       card-size="medium"
+                       style="position: absolute; top: 150px; left: 35px;"></myth-card>
+
+            <myth-card id="myth_card_1"
+                       card-id="myth_card_1"
+                       card-pid="{{mythCardDataModel['myth_card_1'].pid}}"
+                       card-color="{{mythCardDataModel['myth_card_1'].color}}"
+                       card-text="{{mythCardDataModel['myth_card_1'].text}}"
+                       card-size="medium"
+                       style="position: absolute; top: 150px; left: 205px;"></myth-card>
+
+            <myth-card id="myth_card_2"
+                       card-id="myth_card_2"
+                       card-pid="{{mythCardDataModel['myth_card_2'].pid}}"
+                       card-color="{{mythCardDataModel['myth_card_2'].color}}"
+                       card-text="{{mythCardDataModel['myth_card_2'].text}}"
+                       card-size="medium"
+                       style="position: absolute; top: 150px; left: 380px;"></myth-card>
+
+        </div>
+    </div>
+
+    <!-- !------------------! -->
+    <!-- FACT PAD area -->
+    <!-- !------------------! -->
+    <div id="factPad"
+         ng-hide="factPadHidden"
+         style="position: absolute; width: 750px; height:500px; top: 100px; margin-right: auto; margin-left: auto">
+
+        <img ng-src="assets/images/factPad.png"
+             style="position:absolute; top: 35px; left: 175px; width: 350px;">
+
+        <div id='allFacts'
+             style="position:absolute; top: 80px; left: 200px; width: 320px; height: 280px">
+
+            <!-- first fact -->
+            <p class="fact-pad-fact-text fact-pad-fact-text-header"
+               style="position:relative;">Fact 1</p>
+
+            <p class="fact-pad-fact-text"
+               style="position:relative;">{{factTextArray[0]}}</p>
+
+            <!-- second fact -->
+            <p class="fact-pad-fact-text fact-pad-fact-text-header"
+               style="position:relative; ">Fact 2</p>
+
+
+            <p class="fact-pad-fact-text"
+               style="position:relative; ">{{factTextArray[1]}}</p>
+
+            <!-- third fact -->
+            <p class="fact-pad-fact-text fact-pad-fact-text-header"
+               style="position:relative; ">Fact 3</p>
+
+            <p class="fact-pad-fact-text"
+               style="position:relative; ">{{factTextArray[2]}}</p>
+        </div>
+
+        <div style="position:absolute; top: 380px; left: 175px; width: 350px; height: 50px">
+
+            <button id="prevButton"
+                    class="employeeButton"
+                    ng-hidden="prevButtonHidden"
+                    ng-click="onPrev()"
+                    style="width: 120px; float: left">&lt; Previous Myth</button>
+
+            <button id="nextButton"
+                    class="employeeButton"
+                    ng-hidden="nextButtonHidden"
+                    ng-click="onNext()"
+                    style="width: 120px; float: right">Next Myth &gt;</button>
+        </div>
+
+        <!-- did you know? -->
+        <div id="didYouKnowTextArea"
+             style="position:absolute; top: 100px; left: 530px; width: 180px; height: 280px"
+             ng-hidden="didYouKnowTextHidden">
+            <img style="width: 170px"
+                 ng-src="{{'assets/images/' + didYouKnowImg}}">
+        </div>
+    </div>
+
+    <!-- !------------------! -->
+    <!-- TEXT area -->
+    <!-- !------------------! -->
+    <div id="topTextArea"
+         ng-hide="topTextAreaHidden"
+         style="position: absolute; left: 35px; top:100px;">
+        <p style="position: relative; top:20px; width:600px; margin-left:auto; margin-right: auto; font-size: 16px; text-align: left">{{title}}</p>
+        <p style="position: relative; top:15px; width:600px; margin-left:auto; margin-right: auto; font-size: 12px; text-align: left">{{subtitle}}</p>
+    </div>
+
+    <!-- !------------------! -->
+    <!-- LINGO area -->
+    <!-- !------------------! -->
+    <div id="lingoText"
+         ng-hide="lingoTextHidden"
+         style="position: absolute; left: 560px; top:250px;">
+        <p class="lingo-title">Understanding the Lingo</p>
+        <ul style="position: relative; left: -20px; top: 0px; width: 200px;">
+            <li class="lingo-item" ng-repeat="lingoItem in getLingoItems()">{{lingoItem}}</li>
+        </ul>
+    </div>
+
+    <!-- !------------------! -->
+    <!-- EMPLOYEE CARDS area -->
+    <!-- !------------------! -->
+    <div id="employeeCards"
+         class="centered-div"
+         ng-hide="employeeCardsHidden"
+         style="position: absolute; width:700px; height: 400px; top:100px; left:0px">
+
+        <div class="centered-div"
+             style="width:700px; top:0px">
+            <p style="position: relative; top:20px; width:600px; margin-left:auto; margin-right: auto; font-size: 12px; text-align: center">{{title}}</p>
+            <p style="position: relative; top:15px; width:600px; margin-left:auto; margin-right: auto; font-size: 16px; text-align: center">{{subtitle}}</p>
+        </div>
+
+        <div class="centered-div"
+             style="width:750px; top:25px">
+
+        <div employee-card
+                 card-type="employeeCard-sole"
+                 card-event="broadcastSoleClick"
+                 card-button-text="0 - 1"
+                 style="position:absolute; top:0px; left:50px;"></div>
+
+            <div employee-card
+                 card-type="employeeCard-twoTen"
+                 card-event="broadcastTwoTenClick"
+                 card-button-text="2 - 10"
+                 style="position:absolute; top:0px; left:285px;"></div>
+
+            <div employee-card
+                 card-type="employeeCard-midSize"
+                 card-event="broadcastMidSizeClick"
+                 card-button-text="11 - 100"
+                 style="position:absolute; top:0px; left:520px;"></div>
+        </div>
+
+    </div>
+</div>
+
+>>>>>>> master

@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 <div class="header-bar-container">
 
@@ -38,5 +39,53 @@
          src="assets/images/phoneNumberRolloverCropped.png">
 
   </div>
+=======
+<div id="headerBarContainer"
+     class="centered-div"
+     style="top:10px; width: 750px">
+
+    <img id="logo"
+         ng-src="assets/images/logoTextSBO.png"
+         ng-show="showHeaderElements"
+         style="position: relative; top: 10px; left: 10px; height: 40px">
+
+
+    <img id="logoBar"
+         ng-src="assets/images/logoBar.png"
+         ng-show="showHeaderElements"
+         style="position: absolute; top: 55px; left: 10px; width: 550px">
+
+    <img id="phoneNumberImage"
+         ng-show="showHeaderElements"
+         ng-src="assets/images/phoneNumber.png"
+         ng-mouseover="onPhoneNumberMouseOver()"
+         ng-mouseout="onPhoneNumberMouseOut()"
+         style="width: 200px; position: absolute; top: -15px; right: -10px">
+
+    <img id="phoneNumberPopup"
+         ng-src="assets/images/phoneNumberRollover.png"
+         ng-show="showPopup"
+         class="z-200"
+         style="position:absolute; right: 25px; top:60px; width: 180px">
+
+    <div style="position: absolute; width: 100px; top: 65px; right: 10px">
+
+        <img id="facebookBug"
+             ng-src="assets/images/bug_facebook.png"
+             ng-show="showHeaderElements"
+             style="float: right;" >
+
+        <img id="linkedInBug"
+             ng-src="assets/images/bug_linkedin.png"
+             ng-show="showHeaderElements"
+             style="float: right; padding-right: 7px">
+
+        <img id="twitterBug"
+             ng-src="assets/images/bug_twitter.png"
+             ng-show="showHeaderElements"
+             style="float: right; padding-right: 7px">
+    </div>
+
+>>>>>>> master
 </div>
 

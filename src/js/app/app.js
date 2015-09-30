@@ -5,6 +5,7 @@
 
   angular.module('bgsMythCardsApp',
       [ 'ui.router',
+<<<<<<< HEAD
         'ngAnimate'
       ])
 
@@ -19,6 +20,15 @@
       'short':.35,
       'xshort':.2
     } )
+=======
+        'ngAnimate',
+        'mobile-angular-ui'
+      ])
+
+      .constant( 'animations', {
+        'TweenMax': TweenMax
+      } )
+>>>>>>> master
 
       .config(function( $stateProvider, $urlRouterProvider ){
         // ----------------------------
@@ -33,6 +43,10 @@
             .state('start', {
               url: 'start',
               templateUrl: 'app/app.html'
+<<<<<<< HEAD
+=======
+              //template: '<div><h3>HERE TOO</h3></div>'
+>>>>>>> master
             });
       })
 
@@ -41,4 +55,8 @@
 
         $state.go( 'start' );
       }]);
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> master
