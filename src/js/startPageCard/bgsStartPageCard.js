@@ -2,12 +2,15 @@
  * Created by douglas goodman on 2/15/15
  */
 
-(function () {
+(function() {
   'use strict';
 
-  bgsStartPageCard.$inject = ['$log'];
+  bgsStartPageCard.$inject = [
+    '$log',
+    '$timeout',
+    'bgsAnimeTimings' ];
 
-  function bgsStartPageCard($log) {
+  function bgsStartPageCard( $log, $timeout, bgsAnimeTimings ) {
     //$log.debug( 'bgsStartPageCard LOADED');
 
     // --------------------
@@ -33,24 +36,44 @@
     // functions
     // --------------------
 
-    function controller( $scope, ANIME_EVENTS ) {
+    function controller( $rootScope, $timeout, bgsAnimeTimings, ANIME_EVENTS ) {
 
       var self = this;
 
       self.startCardShow = false;
+      self.startCardFlip = false;
+      self.hideStartCard = false;
 
-      self.startIntro = function(){
-        $log.debug( 'bgsStartPageCard.startIntro');
-        self.startCardShow = true;
+      // -------------------------
+      // functions
+      // -------------------------
+
+      self.startNow = function(){
+        $log.debug( 'bgsStartPageCard.startNow');
+        $rootScope.$broadcast( ANIME_EVENTS.showBlotter );
       };
+
 
       // -------------------------
       // listeners
       // -------------------------
 
-      $scope.$on( ANIME_EVENTS.startIntro, function(){
-        self.startIntro();
-      });
+      $rootScope.$on( ANIME_EVENTS.startIntro, function() {
+        $timeout( function() {
+          self.startCardShow = true;
+        }, bgsAnimeTimings.intro.showStartCard * 1000 );
+
+        $timeout( function() {
+          self.startCardFlip = true;
+        }, bgsAnimeTimings.intro.flipStartCard * 1000 );
+      } );
+
+
+      $rootScope.$on( ANIME_EVENTS.showBlotter, function(){
+        $timeout( function() {
+          self.hideStartCard = true;
+        }, bgsAnimeTimings.showBlotter.hideStartCard * 1000 );
+      })
     }
 
   }// END CLASS
@@ -59,7 +82,7 @@
   // inject
   // --------------------
 
-  angular.module('bgsMythCardsApp')
-    .directive('bgsStartPageCard', bgsStartPageCard);
+  angular.module( 'bgsMythCardsApp' )
+    .directive( 'bgsStartPageCard', bgsStartPageCard );
 
 })();

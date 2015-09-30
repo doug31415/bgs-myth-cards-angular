@@ -1,0 +1,23 @@
+<div class="start-page-cards-wrapper">
+
+  <!--title-->
+  <div ng-class="{'fade-in-out': cbtCtrl.fadeInTitle}"
+       class="title hide">
+    <h1>Or you can view the myths by category</h1>
+  </div>
+
+  <!--card sets-->
+  <div class="card-sets hide"
+       ng-class="{'fade-in-out': cbtCtrl.addCards}">
+
+    <bgs-myth-card-set model-data="cbtCtrl.timeCardData"
+                       card-size="small"></bgs-myth-card-set>
+
+    <bgs-myth-card-set model-data="cbtCtrl.moneyCardData"
+                       card-size="small"></bgs-myth-card-set>
+
+    <bgs-myth-card-set model-data="cbtCtrl.employeeCardData"
+                       card-size="small"></bgs-myth-card-set>
+  </div>
+</div>
+

@@ -3,8 +3,9 @@
   header bar
 /* ----------------------------- */
 
-.start-page-cards-wrapper{
-  position:relative;
+
+.start-page-cards-wrapper {
+  position: relative;
   display: block;
 
   height: 100%;
@@ -14,17 +15,17 @@
   margin-right: auto;
   z-index: 0;
 
-  border: 1px solid red;
+  //border: 1px solid red;
 
-  .title{
-    position:absolute;
+  .title {
+    position: absolute;
     top: 0;
     width: 100%;
     height: 15%;
 
-    border: 1px solid #008600;
+    //border: 1px solid #008600;
 
-    h1{
+    h1 {
       text-align: center;
       color: $white;
       font-size: 16px;
@@ -33,27 +34,33 @@
       opacity: .5;
       letter-spacing: 1px;
     }
-//    visibility: hidden;
-//    opacity: 0;
   }
 
-
-  .content{
-    position:absolute;
+  .card-sets{
+    position: absolute;
     bottom: 0;
     width: 100%;
     height: 85%;
-    border: 1px solid #00f300;
-
-    .card{
-      display: inline-block;
-      padding: 0;
-      margin: 0;
-//      border: 1px solid #f3aa0b;
-    }
-//    visibility: hidden;
-//    opacity: 0;
   }
-
 }
+
+
+//  .content{
+//    position:absolute;
+//    bottom: 0;
+//    width: 100%;
+//    height: 85%;
+//    //border: 1px solid #00f300;
+//
+//    .card{
+//      display: block;
+//      float:left;
+//      padding: 0;
+//      margin: 0;
+////      border: 1px solid #f3aa0b;
+//    }
+////    visibility: hidden;
+////    opacity: 0;
+//  }
+
 

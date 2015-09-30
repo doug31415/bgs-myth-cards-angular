@@ -2,13 +2,15 @@
  * Created by douglas goodman on 2/14/15
  */
 
-(function(){
+(function() {
   'use strict';
 
-  bgsHeaderBar.$inject = ['$log'];
+  bgsHeaderBar.$inject = [
+    '$log',
+    'bgsAnimeTimings' ];
 
-  function bgsHeaderBar( $log ){
-    $log.debug( 'bgsHeaderBar LOADED');
+  function bgsHeaderBar( $log, bgsAnimeTimings ) {
+    $log.debug( 'bgsHeaderBar LOADED' );
 
     // --------------------
     // vars
@@ -21,10 +23,9 @@
     var directive = {
       restrict: 'EA',
       replace: true,
-      scope: {
-
-      },
+      scope: {},
       controller: controller,
+      bindToController: true,
       controllerAs: 'headerCtrl',
       templateUrl: 'headerBar/header-bar-tmpl.html'
     };
@@ -35,30 +36,30 @@
     // functions
     // --------------------
 
-    function controller( $scope, $timeout, ANIME_EVENTS ){
+    function controller( $scope, $timeout, bgsAnimeTimings, ANIME_EVENTS ) {
       var self = this;
 
       self.showPhoneRollover = false;
       self.showHeaderLeft = false;
       self.showHeaderRight = false;
 
-      self.startIntro = function(){
-        $timeout( function(){
+      self.startIntro = function() {
+        $timeout( function() {
           self.showHeaderLeft = true;
-        }, 900 );
+        }, bgsAnimeTimings.intro.showHeaderLeft * 1000 );
 
-        $timeout( function(){
+        $timeout( function() {
           self.showHeaderRight = true;
-        }, 1000 );
+        }, bgsAnimeTimings.intro.showHeaderRight * 1000 );
       };
 
       // -------------------------
       // listeners
       // -------------------------
 
-      $scope.$on( ANIME_EVENTS.startIntro, function(){
+      $scope.$on( ANIME_EVENTS.startIntro, function() {
         self.startIntro();
-      });
+      } );
 
     }
 

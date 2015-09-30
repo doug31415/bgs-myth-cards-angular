@@ -2,46 +2,123 @@
   backgrounds
 /* ----------------------------- */
 
-@mixin myth-card-wrapper(){
-  position:relative;
-  display: inline-block;
+.myth-card-set{
+  position: relative;
+
+  height: 100%;
+  width: 33%;
+  float: left;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  //border: 2px solid blue;
+
+}
+
+.myth-card-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
   padding: 0;
   margin: 0;
 
-  border: 1px solid red;
-
   height: 100%;
-  width: 32%;
+  width: 100%;
 
-//  margin-left: auto;
-//  margin-right: auto;
-//  z-index: 0;
-}
-
-.card-wrapper-blue{
-  @include myth-card-wrapper;
+  //border: 3px solid green;
 
   .card{
-    @include img-bkgrnd-fill-to-scale( "../assets/images/card_blue.png" )
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    height: 100%;
+    width: 33%;
+
+    //border: 2px solid pink;
+  }
+
+  &.blue{
+    .card{
+      @include img-bkgrnd-fill-to-scale( "../assets/images/card_blue.png" );
+    }
+  }
+
+  &.green{
+    .card {
+      @include img-bkgrnd-fill-to-scale("../assets/images/card_green.png");
+    }
+  }
+
+  &.orange{
+    .card {
+      @include img-bkgrnd-fill-to-scale("../assets/images/card_orange.png");
+    }
   }
 }
 
-.card-wrapper-green{
-  @include myth-card-wrapper;
+$blue-text: #3E98CC;
+$green-text: #6DA044;
+$orange-text: #E0472B;
 
-  .card{
-    @include img-bkgrnd-fill-to-scale( "../assets/images/card_green.png" )
+.myth-card-text{
+  position: absolute;
+  font-family: Arial, sans;
+  text-align: center;
+
+  top: 35%;
+  right: 15%;
+  left: 15%;
+
+  //border: 1px solid red;
+
+  &.small{
+    font-size: 9px;
+    line-height: 12px;
+  }
+
+  &.medium{
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  &.blue{
+    color: $blue-text;
+  }
+
+  &.green{
+    color: $green-text;
+  }
+
+  &.orange{
+    color: $orange-text;
   }
 }
 
-.card-wrapper-orange{
-  @include myth-card-wrapper;
+.get-the-facts{
+  position:absolute;
+  margin-right: auto;
+  margin-left: 50%;
+  cursor: hand;
+  cursor: pointer;
 
-  .card{
-    @include img-bkgrnd-fill-to-scale( "../assets/images/card_orange.png" )
+  &.small{
+    bottom: 15%;
+    width: 50%;
+    transform: translateX( -50% );
+  }
+
+  &.medium{
+    top:0px;
+    width: 76px;
+    transform: translateX( -38px );
   }
 }
-
 
 
 

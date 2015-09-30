@@ -33,22 +33,20 @@
     // functions
     // --------------------
 
-    function controller( $scope, ANIME_EVENTS ){
+    function controller(  $rootScope, $timeout, bgsAnimeTimings, ANIME_EVENTS ){
 
       var self = this;
 
       self.showFooter = false;
 
-      self.startIntro = function(){
-        self.showFooter = true;
-      };
-
       // -------------------------
       // listeners
       // -------------------------
 
-      $scope.$on( ANIME_EVENTS.startIntro, function(){
-        self.startIntro();
+      $rootScope.$on( ANIME_EVENTS.startIntro, function(){
+        $timeout( function(){
+          self.showFooter = true;
+        }, bgsAnimeTimings.intro.showFooter * 1000);
       });
     }
 

@@ -231,7 +231,7 @@
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
       gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
+      gulp.src(['src/js/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
     )
       .pipe(sourcemaps.init())
       .pipe(concat('app.js'))

@@ -1,22 +1,21 @@
 /**
- * Created by douglas goodman on 2/1/15.
+ * Created by douglas goodman on 2/15/15.
  */
 
 (function(){
   'use strict';
 
-  bgsFooterAnimation.$inject = ['$log', 'EASE'];
+  bgsFadeInOut.$inject = ['$log', 'EASE'];
 
-  function bgsFooterAnimation( $log, EASE ){
-
-
+  function bgsFadeInOut( $log, EASE ){
+    //$log.debug( 'bgsFadeInOut LOADED');
 
     // --------------------
     // vars
     // --------------------
 
     // --------------------
-    // setup
+    // init
     // --------------------
 
     // --------------------
@@ -35,10 +34,9 @@
     // --------------------
 
     function beforeAddClass( element, className, done ){
-      //$log.debug('bgsFooterAnimation.beforeAddClass', className);
-
-      if( className === 'bgsFooterAnimation' ){
-        TweenMax.to( element, EASE.long, { autoAlpha: 1, ease:Linear.easeOut, onComplete:done });
+      if( className === 'fade-in-out' ){
+        //$log.debug( 'bgsFadeInOut.beforeAddClass');
+        TweenMax.to( element, 1, {autoAlpha: 1, onComplete: done});
       }
       else {
         done();
@@ -46,21 +44,14 @@
     }
 
     function beforeRemoveClass( element, className, done ){
-      //$log.debug('bgsFooterAnimation.beforeRemoveClass', className);
-
-      if( className === 'bgsFooterAnimation' ){
-        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:done });
+      if( className === 'fade-in-out' ){
+        //$log.debug( 'bgsFadeInOut.beforeAddClass');
+        TweenMax.to( element, 1, {autoAlpha: 0, onComplete: done});
       }
       else {
         done();
       }
     }
-
-    function onRemoveComplete(){
-      $log.debug('bgsFooterAnimation.onRemoveComplete');
-
-    }
-
 
   }// END CLASS
 
@@ -69,6 +60,6 @@
   // --------------------
 
   angular.module( 'bgsMythCardsApp' )
-      .animation( '.bgsFooterAnimation', bgsFooterAnimation );
+    .animation( '.fade-in-out', bgsFadeInOut );
 
 })();

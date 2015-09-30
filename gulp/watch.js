@@ -13,7 +13,7 @@
     gulp.watch('src/assets/mockData/**/*',         ['mocks']);
     gulp.watch('src/assets/plugins/**/*',          ['js']);
     gulp.watch('src/js/**/*.js',                   ['js']);
-    gulp.watch('src/templates/**/*.html',          ['js']);
+    gulp.watch('src/js/**/*.html',          ['js']);
     gulp.watch('src/index.html',                   ['js', 'sass']);
     gulp.watch('bower.json',                       ['wiredep']);
   });

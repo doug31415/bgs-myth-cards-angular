@@ -1,10 +1,11 @@
 <div class="start-page-card-wrapper"
-  ng-class="{'startCardShow': startCardCtrl.startCardShow}">
+  ng-class="{'startCardShow': startCardCtrl.startCardShow, 'startCardFlip': startCardCtrl.startCardFlip, 'fade-out-in': startCardCtrl.hideStartCard}">
 
   <div class="card">
     <div class="card-front"></div>
     <div class="card-back">
-      <a class="start-now-button">Start Now</a>
+      <a class="start-now-button"
+        ng-click="startCardCtrl.startNow()">Start Now</a>
     </div>
   </div>
 
