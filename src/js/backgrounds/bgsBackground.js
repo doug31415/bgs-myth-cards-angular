@@ -41,41 +41,19 @@
 
       var self = this;
 
-      // -------------------------
-      // model
-
-      // -------------------------
-      // other
-
       self.showStartPageBackground = false;
       self.showMythExplorerBackground = false;
 
       self.showBackground = false;
 
-
       // -------------------------
-      // business logic
+      // functions
       // -------------------------
 
       self.startIntro = function () {
         $log.debug ('bgsBackgroundsController.startIntro' );
         self.showBackground = true;
       };
-
-
-      //// -------------------------
-      //// myth explorer animation
-      //
-      //self.addMythExplorerBackground = function () {
-      //  self.showMythExplorerBackground = true;
-      //  $('#mythExplorerBackground').fadeTo(0, 0); // initialize the alpha to 0
-      //  TweenMax.to(mythExplorerBackground, 1, {alpha: 1, ease: Power2.easeOut, onComplete: self.onAddMythExplorerBackgroundComplete});
-      //};
-      //
-      //self.onAddMythExplorerBackgroundComplete = function () {
-      //  $log.debug('BackgroundsController.onAddMythExplorerBackgroundComplete');
-      //  self.showStartPageBackground = false;
-      //};
 
       // -------------------------
       // listeners
@@ -84,19 +62,6 @@
       $scope.$on( ANIME_EVENTS.startIntro, function(){
         self.startIntro();
       });
-      //
-      //$scope.$on('broadcastNavigateToStartPage', function(){
-      //  $log.debug ('bgsBackgroundsController.onBroadcastNavigateToStartPage' );
-      //});
-      //
-      //$scope.$on( bgsAnimationService.ADD_MYTH_EXPLORER_BACKGROUND, function(){
-      //  $log.debug ('bgsBackgroundsController.ADD_MYTH_EXPLORER_BACKGROUND' );
-      //  $scope.addMythExplorerBackground()
-      //});
-      //
-      //$scope.$on( bgsNavigationService.COMPARE_PLANS_STATE, function(){
-      //  $log.debug('bgsBackgroundsController.COMPARE_PLANS_STATE()');
-      //  $scope.addMythExplorerBackground()    });
 
 
     } // end controller

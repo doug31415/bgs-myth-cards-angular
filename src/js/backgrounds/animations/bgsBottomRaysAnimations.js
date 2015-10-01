@@ -35,7 +35,7 @@
     // --------------------
 
     function beforeAddClass( element, className, done ){
-      //$log.debug('bottomRaysAnime.beforeAddClass', className);
+      $log.debug('bottomRaysAnime.beforeAddClass', className);
 
       if( className === 'bottomRaysAnime' ){
         TweenMax.set( element, {autoAlpha:0});

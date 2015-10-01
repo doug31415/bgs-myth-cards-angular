@@ -2,12 +2,14 @@
  * Created by douglas goodman on 2/1/15.
  */
 
-(function(){
+(function() {
   'use strict';
 
-  bkgrndAnime.$inject = ['$log', 'EASE'];
+  bkgrndAnime.$inject = [
+    '$log',
+    'EASE' ];
 
-  function bkgrndAnime( $log, EASE ){
+  function bkgrndAnime( $log, EASE ) {
 
 
 
@@ -34,30 +36,38 @@
     // functions
     // --------------------
 
-    function beforeAddClass( element, className, done ){
+    function beforeAddClass( element, className, done ) {
       //$log.debug('bkgrndAnime.beforeAddClass', className);
 
-      if( className === 'bkgrndAnime' ){
-        TweenMax.to( element, EASE.long, {autoAlpha: 1, ease:Linear.easeOut, onComplete:done });
+      if( className === 'bkgrndAnime' ) {
+        TweenMax.to( element, EASE.long, {
+          autoAlpha: 1,
+          ease: Linear.easeOut,
+          onComplete: done
+        } );
       }
       else {
         done();
       }
     }
 
-    function beforeRemoveClass( element, className, done ){
+    function beforeRemoveClass( element, className, done ) {
       //$log.debug('bkgrndAnime.beforeRemoveClass', className);
 
-      if( className === 'bkgrndAnime' ){
-        TweenMax.to( element, EASE.long, {autoAlpha: 0, ease:Linear.easeOut, onComplete:done });
+      if( className === 'bkgrndAnime' ) {
+        TweenMax.to( element, EASE.long, {
+          autoAlpha: 0,
+          ease: Linear.easeOut,
+          onComplete: done
+        } );
       }
       else {
         done();
       }
     }
 
-    function onRemoveComplete(){
-      $log.debug('bkgrndAnime.onRemoveComplete');
+    function onRemoveComplete() {
+      $log.debug( 'bkgrndAnime.onRemoveComplete' );
 
     }
 
@@ -69,6 +79,6 @@
   // --------------------
 
   angular.module( 'bgsMythCardsApp' )
-      .animation( '.bkgrndAnime', bkgrndAnime );
+    .animation( '.bkgrndAnime', bkgrndAnime );
 
 })();
