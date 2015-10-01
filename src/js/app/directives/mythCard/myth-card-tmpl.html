@@ -1,0 +1,13 @@
+<div class="{{::getCardWrapperClass()}}">
+
+  <div class="card"
+       id="{{cardId}}"
+       ng-class="{'spin-in-out': mcCtrl.addCards, 'fan-in-out' : mcCtrl.fanInCards}">
+
+    <p class="{{::getCardTextClass()}}">{{mcCtrl.cardText}}</p>
+
+    <img ng-src="assets/images/btn_getTheFacts.png" class="get-the-facts {{::mcCtrl.cardSize}}">
+
+  </div>
+</div>
+

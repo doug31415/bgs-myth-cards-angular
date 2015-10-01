@@ -2,61 +2,92 @@
 
 (function(){
   'use strict';
-  
-  bgsMythCard.$inject = ['$log'];
-  
-  function bgsMythCard( $log ){
-  
+
+  bgsMythCard.$inject = ['$log', '$rootScope', '$timeout', 'ANIME_EVENTS'];
+
+  function bgsMythCard( $log, $rootScope, $timeout, ANIME_EVENTS ){
+    //$log.debug( 'bgsMythCard.LOADED');
+
   // --------------------
-  // vars 
+  // vars
   // --------------------
-  
+
   // --------------------
-  // class factory 
+  // class factory
   // --------------------
-  
+
   var directive = {
     restrict: 'EA',
     replace: true,
-    transclude: false,
     scope: {
-      cardId: '@cardId',   // the dom id property - so we can grab it for animation
-      cardPid: '@cardPid',  // the PID we use to reference its properties, irrespective of its dom id
-      cardColor:'@cardColor',
+      cardType:'@cardType',
       cardText:'@cardText',
+      cardId:'@cardId',
       cardSize: '@cardSize'
     },
+    link: link,
     controller: controller,
+    controllerAs: 'mcCtrl',
+    bindToController: true,
     templateUrl: 'app/directives/mythCard/myth-card-tmpl.html'
   };
-  
+
   return directive;
-  
+
   // --------------------
-  // functions 
+  // functions
   // --------------------
 
-    function controller( $scope, $rootScope ){
+    function link( scope, elem, attrs ){
 
-      $scope.onCardClick = function(){
+      scope.cardId = attrs.cardId;
 
-        $rootScope.$broadcast( 'MYTH_BTN_CLICK_' + $scope.cardId,
-            {
-              cardColor: $scope.cardColor,
-              cardId: $scope.cardId,
-              cardPid: $scope.cardPid
-            }
-        );
+      scope.getCardWrapperClass = function(){
+        //$log.debug( 'bgsMythCard.getCardClass', attrs.cardType);
+        return 'myth-card-wrapper ' + attrs.cardType;
       };
+
+      scope.getCardTextClass = function(){
+        //$log.debug( 'bgsMythCard.getCardTextClass');
+        return 'myth-card-text ' + attrs.cardType + ' ' + attrs.cardSize
+      };
+
+      scope.onClick = function(){
+      };
+    } //END LINK
+
+    function controller( $rootScope, bgsAnimeTimings ){
+      var self = this;
+
+
+      self.getCardTextClass = function(){
+        //$log.debug( 'bgsMythCard.getCardTextClass');
+        return 'myth-card-text ' + self.cardType + ' ' + self.cardSize
+      };
+
+      $rootScope.$on( ANIME_EVENTS.startIntro, function() {
+        //$log.debug( 'bgsMythCard.startIntro');
+
+        $timeout( function(){
+          self.addCards = true;
+          //$log.debug( '...adding cards');
+        }, bgsAnimeTimings.intro.showCategoryCards * 1000);
+
+
+        $timeout( function(){
+          self.fanInCards = true;
+          //$log.debug( '...fanning cards');
+        }, bgsAnimeTimings.intro.fanCategoryCards * 1000);
+      } );
     }
-  
+
 }// END CLASS
-  
+
   // --------------------
-  // inject 
+  // inject
   // --------------------
-  
+
   angular.module( 'bgsMythCardsApp' )
     .directive( 'bgsMythCard', bgsMythCard );
-  
+
 })();

@@ -28,6 +28,8 @@
       'src/js/**/*.js',
       'src/templates/**/*.html',
       'src/assets/plugins/**/*.js',
+      'src/assets/plugins/**/*.js',
+      './bower_components/mobile-angular-ui/dist/js/**/*',
       'test/unit/**/*.js'
     ]);
 

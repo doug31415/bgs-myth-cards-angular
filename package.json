@@ -1,6 +1,7 @@
 {
-  "name": "bgsMythCardsApp",
+  "name": "bgsMythApp",
   "version": "0.0.0",
+  "dependencies": {},
   "devDependencies": {
     "browser-sync": "^1.3.6",
     "chalk": "^0.4.0",
@@ -40,7 +41,7 @@
     "streamqueue": "^0.1.1",
     "wiredep": "^1.8.5"
   },
-  "dependencies": {
-    "angular-animate": "^1.3.11"
+  "engines": {
+    "node": ">=0.10.0"
   }
 }

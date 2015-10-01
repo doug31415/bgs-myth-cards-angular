@@ -8,23 +8,39 @@
   /*=====================================
    ------    Configuration      ------- */
 
+// Please use config.js to override these selectively:
   var config = {
     dest: 'www',
     cordova: true,
     minify_images: true,
 
+    unit_test_dir: 'test/karma.conf.js',
+
     vendor: {
       js: [
         './bower_components/jquery/dist/jquery.js',
         './bower_components/lodash/dist/lodash.js',
+        './bower_components/greensock/src/minified/TweenMax.min.js',
+
         './bower_components/angular/angular.js',
-        './node_modules/angular-animate/angular-animate.js',
+
         './bower_components/angular-ui-router/release/angular-ui-router.js',
-        './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js'
+        './bower_components/angular-animate/angular-animate.js',
+        './bower_components/angular-filter/dist/angular-filter.js',
+        './bower_components/angular-sanitize/angular-sanitize.js',
+
+        './bower_components/angular-translate/angular-translate.js',
+        './bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+
+        './bower_components/moment/moment.js'
       ],
 
       fonts: [
         './bower_components/font-awesome/fonts/fontawesome-webfont.*'
+      ],
+
+      css: [
+        './bower_components/bootstrap/dist/css/bootstrap.min.css'
       ]
     }
   };
@@ -105,7 +121,17 @@
 
   gulp.task('fonts', function() {
     return gulp.src( config.vendor.fonts )
-        .pipe( gulp.dest( path.join( config.dest, 'fonts' )));
+      .pipe( gulp.dest( path.join( config.dest, 'fonts' )));
+  });
+
+
+  /*==================================
+   =            Copy css            =
+   ==================================*/
+
+  gulp.task('vendor:css', function() {
+    return gulp.src( config.vendor.css )
+      .pipe( gulp.dest( path.join( config.dest, 'css' )));
   });
 
   /*==================================
@@ -139,6 +165,11 @@
    as well as any images in the plugins directory
    =====================================*/
 
+  gulp.task('img', function() {
+    return gulp.src( ['./src/assets/images/**/*'] )
+      .pipe(gulp.dest(path.join(config.dest, 'assets/images')));
+  });
+
   gulp.task('images', function () {
     var stream = gulp.src(['./src/assets/images/**/*']);
 
@@ -153,41 +184,15 @@
     return stream.pipe(gulp.dest(path.join(config.dest, 'assets/images')));
   });
 
-  gulp.task('img', function() {
-    return gulp.src( ['./src/assets/images/**/*'])
-        .pipe(gulp.dest(path.join(config.dest, 'assets/images')));
-  });
-
   /*=========================================
    =               styles                   =
    =========================================*/
 
-  //gulp.task('sass', ['wiredep'],  function () {
-  //  return gulp.src(
-  //    ['./src/assets/sass/main.scss', './src/assets/sass/main.scss'] )
-  //    .pipe($.sass() )
-  //    .on('error', handleError)
-  //    .pipe(mobilizer('app.css', {
-  //      'app.css': {
-  //        hover: 'exclude',
-  //        screens: ['0px']
-  //      },
-  //      'hover.css': {
-  //        hover: 'only',
-  //        screens: ['0px']
-  //      }
-  //    }))
-  //    //.pipe(cssmin())
-  //    .pipe(gulp.dest('.tmp-css'))
-  //    .pipe(concat('app.css'))
-  //    .pipe(rename({basename: "main", suffix: '.min'}))
-  //    .pipe(gulp.dest(path.join(config.dest, 'css')))
-  //    .pipe($.size());
-  //});
-
-  gulp.task('less', ['wiredep'], function () {
-    gulp.src([ './src/assets/less/app.less' ])
-      .pipe(less())
+  gulp.task('sass', ['wiredep'],  function () {
+    return gulp.src(
+      ['./src/assets/sass/main.scss'] )
+      .pipe($.sass() )
+      .on('error', handleError)
       .pipe(mobilizer('app.css', {
         'app.css': {
           hover: 'exclude',
@@ -198,13 +203,23 @@
           screens: ['0px']
         }
       }))
-      .pipe(cssmin())
-      .pipe(gulp.dest('css'))
-      .pipe(concat('main.css'))
-      .pipe(rename({basename: "app", suffix: '.min'}))
+      //.pipe(cssmin())
+      .pipe(gulp.dest('.tmp-css'))
+      .pipe(concat('app.css'))
+      .pipe(rename({basename: "main", suffix: '.min'}))
       .pipe(gulp.dest(path.join(config.dest, 'css')))
       .pipe($.size());
   });
+
+  gulp.task('clean:css', function( done ){
+    $.del([ '.tmp-css/**'], done );
+  });
+
+  gulp.task('styles', ['wiredep'], function(done) {
+    seq('clean:css', 'sass', done);
+  });
+
+
 
   /*====================================================================
    =            Compile and minify js generating source maps            =
@@ -214,32 +229,19 @@
 
   gulp.task('js', function() {
     streamqueue({ objectMode: true },
-        gulp.src(config.vendor.js),
-        gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-        gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
+      gulp.src(config.vendor.js),
+      gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
+      gulp.src(['src/js/**/*.html']).pipe(templateCache({ module: 'bgsMythCardsApp' }))
     )
-        .pipe(sourcemaps.init())
-        .pipe(concat('app.js'))
-        .pipe(ngAnnotate())
+      .pipe(sourcemaps.init())
+      .pipe(concat('app.js'))
+      .pipe(ngAnnotate())
       //.pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(path.join(config.dest, 'js')));
+      .pipe(rename({suffix: '.min'}))
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(path.join(config.dest, 'js')));
   });
 
-  gulp.task('greensock', function() {
-    streamqueue({ objectMode: true },
-        gulp.src(config.vendor.js),
-        gulp.src('./bower_components/greensock/src/uncompressed/**/*.js').pipe(ngFilesort())
-    )
-        .pipe(sourcemaps.init())
-        .pipe(concat('greensock.js'))
-        .pipe(ngAnnotate())
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(path.join(config.dest, 'js')));
-  });
 
 
   /*=================================================
@@ -248,26 +250,37 @@
 
   gulp.task('html', function() {
     var inject = [];
-    //if (config.cordova) {
-    //  inject.push('<script src="cordova.js"></script>');
-    //}
+    gulp.src(['src/index.html'])
+      .pipe( replace( '<!-- inject:js -->', inject.join('\n') ))
+      .pipe(gulp.dest(config.dest));
+  });
 
-    //inject.push('<script src="js/greensock.js"></script>');
+  /*=================================================
+   =            Copy vendor css files to dest              =
+   =================================================*/
+
+  gulp.task('inject:css', function() {
+    var inject = ['<link rel="stylesheet" href="css/bootstrap.min.css">'];
 
     gulp.src(['src/index.html'])
-        .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
-        .pipe(gulp.dest(config.dest));
+      .pipe( replace( '<!-- inject:css -->', inject.join('\n') ))
+      .pipe(gulp.dest(config.dest));
   });
+
+  gulp.task('css', function(done) {
+    seq('vendor:css', 'inject:css', done);
+  });
+
 
   /*======================================
    =                BUILD                =
    ======================================*/
 
   gulp.task('build', function(done) {
-    //var tasks = ['html', 'fonts', 'images',  'js', 'assets', 'less'];
-    var tasks = ['html', 'fonts', 'img', 'js', 'assets', 'less'];
+    var tasks = ['html', 'fonts', 'img', 'js', 'assets', 'sass'];
     seq('clean', tasks, done);
   });
+
 
 
 })();

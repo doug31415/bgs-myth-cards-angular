@@ -2,12 +2,14 @@
  * Created by douglas goodman on 2/1/15.
  */
 
-(function(){
+(function() {
   'use strict';
 
-  fader.$inject = ['$log', 'animations'];
+  bkgrndAnime.$inject = [
+    '$log',
+    'EASE' ];
 
-  function fader( $log, animations ){
+  function bkgrndAnime( $log, EASE ) {
 
 
 
@@ -15,13 +17,9 @@
     // vars
     // --------------------
 
-    var elem = $('.mythExplorerBackground');
-
     // --------------------
     // setup
     // --------------------
-
-    animations.TweenMax.set( elem, {alpha:0} );
 
     // --------------------
     // class factory
@@ -38,26 +36,39 @@
     // functions
     // --------------------
 
-    function beforeAddClass( element, className, done ){
-      $log.debug('fader.beforeAddClass', className);
-      $log.debug('...elem', elem);
-      if( className === '.fader' ){
-        animations.TweenMax.to( elem, 5, {alpha: 1, ease:Linear.easeOut, onComplete:done });
+    function beforeAddClass( element, className, done ) {
+      //$log.debug('bkgrndAnime.beforeAddClass', className);
+
+      if( className === 'bkgrndAnime' ) {
+        TweenMax.to( element, EASE.long, {
+          autoAlpha: 1,
+          ease: Linear.easeOut,
+          onComplete: done
+        } );
       }
       else {
         done();
       }
     }
 
-    function beforeRemoveClass( element, className, done ){
-      $log.debug('fader.beforeRemoveClass', className);
+    function beforeRemoveClass( element, className, done ) {
+      //$log.debug('bkgrndAnime.beforeRemoveClass', className);
 
-      if( className === '.fader' ){
-        animations.TweenMax.to( elem, 5, {alpha: 0, ease:Linear.easeOut, onComplete:done });
+      if( className === 'bkgrndAnime' ) {
+        TweenMax.to( element, EASE.long, {
+          autoAlpha: 0,
+          ease: Linear.easeOut,
+          onComplete: done
+        } );
       }
       else {
         done();
       }
+    }
+
+    function onRemoveComplete() {
+      $log.debug( 'bkgrndAnime.onRemoveComplete' );
+
     }
 
 
@@ -68,6 +79,6 @@
   // --------------------
 
   angular.module( 'bgsMythCardsApp' )
-      .animation( '.fader', fader );
+    .animation( '.bkgrndAnime', bkgrndAnime );
 
 })();

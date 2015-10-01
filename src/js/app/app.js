@@ -1,38 +1,42 @@
-
-
-(function(){
+(function () {
   'use strict';
 
   angular.module('bgsMythCardsApp',
-      [ 'ui.router',
-        'ngAnimate',
-        'mobile-angular-ui'
-      ])
+    ['ui.router',
+      'ngAnimate'
+    ])
 
-      .constant( 'animations', {
-        'TweenMax': TweenMax
-      } )
+    .constant('ANIME_EVENTS', {
+      startIntro: 'startIntro',
+      showBlotter: 'showBlotter'
+    })
 
-      .config(function( $stateProvider, $urlRouterProvider ){
-        // ----------------------------
-        // state management
-        // ----------------------------
+    .constant('EASE', {
+      'xlong': 1.5,
+      'long': 1,
+      'medium': .5,
+      'short': .35,
+      'xshort': .2
+    })
 
-        $urlRouterProvider.when( '', '/start');
-        $urlRouterProvider.when('/', '/start');
-        $urlRouterProvider.otherwise('/start');
+    .config(function ($stateProvider, $urlRouterProvider) {
+      // ----------------------------
+      // state management
+      // ----------------------------
 
-        $stateProvider
-            .state('start', {
-              url: 'start',
-              templateUrl: 'app/app.html'
-              //template: '<div><h3>HERE TOO</h3></div>'
-            });
-      })
+      $urlRouterProvider.when('', '/start');
+      $urlRouterProvider.when('/', '/start');
+      $urlRouterProvider.otherwise('/start');
 
-      .run( ['$log', '$state', function( $log, $state ){
-          $log.debug( 'bgsMythCardApp.run' );
+      $stateProvider
+        .state('start', {
+          url: 'start',
+          templateUrl: 'app/app.html'
+        });
+    })
 
-        $state.go( 'start' );
-      }]);
+    .run(['$log', '$state', function ($log, $state) {
+      $log.debug('bgsMythCardApp.run');
+      $state.go('start');
+    }]);
 })();

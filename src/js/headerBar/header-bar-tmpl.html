@@ -1,0 +1,42 @@
+
+
+<div class="header-bar-container">
+
+  <div class="left"
+       ng-class="{'headerSectionAnimation' : headerCtrl.showHeaderLeft}">
+
+    <img class="header-logo-text"
+         ng-src="assets/images/logoTextSBO.png">
+
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="right"
+       ng-class="{'headerSectionAnimation' : headerCtrl.showHeaderRight}">>
+
+    <div class="header-contact-info"
+         ng-mouseover="headerCtrl.showPhoneRollover = true"
+         ng-mouseleave="headerCtrl.showPhoneRollover = false">
+
+      <img src="assets/images/phoneNumberCropped.png">
+
+      <div class="bugs">
+        <div class="bug">
+          <img src="assets/images/bug_facebook.png">
+        </div>
+        <div class="bug">
+          <img src="assets/images/bug_linkedin.png">
+        </div>
+        <div class="bug">
+          <img src="assets/images/bug_twitter.png">
+        </div>
+      </div>
+    </div>
+
+    <img class="header-phone-rollover"
+         ng-class="{'phoneRollover': headerCtrl.showPhoneRollover}"
+         src="assets/images/phoneNumberRolloverCropped.png">
+
+  </div>
+</div>
+

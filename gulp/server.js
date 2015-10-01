@@ -48,7 +48,7 @@
      browserSyncInit('www', null, []);
    });
 
-   gulp.task('serve:e2e-dist', ['watch:desktop'], function () {
+   gulp.task('serve:e2e-dist', ['watch'], function () {
      browserSyncInit('www', null, []);
    });
 

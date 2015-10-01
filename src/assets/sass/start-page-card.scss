@@ -1,0 +1,96 @@
+
+/* -----------------------------
+  header bar
+/* ----------------------------- */
+
+.start-page-card-wrapper{
+  position:relative;
+  display: block;
+
+
+  height: 100%;
+  width: 400px;
+
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+
+//  border: 1px solid red;
+
+  .card{
+    position:absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+
+//    border: 1px solid green;
+    visibility: hidden;
+    opacity: 0;
+
+    .card-front{
+      @include img-bkgrnd-fill-to-scale("../assets/images/MerrilSmallBusinessCard.png");
+    }
+
+    .card-back{
+      @include img-bkgrnd-fill-to-scale("../assets/images/MerrilSmallBusinessCardBack-noButton.png");
+    }
+  }
+
+
+  .reflection{
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+
+//    border: 1px solid #00f300;
+    visibility: hidden;
+    opacity: 0;
+
+    .reflection-front{
+      @include img-bkgrnd-fill-to-scale( "../assets/images/merillStartCardReflection.png" );
+    }
+
+    .reflection-back{
+      @include img-bkgrnd-fill-to-scale( "../assets/images/merillStartCardReflectionBack.png" );
+    }
+  }
+
+}
+
+.start-now-button{
+  position:relative;
+  display: block;
+
+  cursor: pointer;
+  cursor: hand;
+
+  top: 75%;
+
+  height: 30px;
+  width: 160px;
+  border-radius: 15px;
+
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+
+  @include gradient-horizontal( $brand-blue, $brand-blue-dark );
+}
+
+a.start-now-button{
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 2px $brand-blue-dark;
+  color: $white;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 30px;
+  text-decoration: none;
+
+  &:hover{
+    color: $white;
+    @include gradient-horizontal( lighten($brand-blue,10), lighten($brand-blue-dark, 10) );
+  }
+}

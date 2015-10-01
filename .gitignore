@@ -1,11 +1,18 @@
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+dist/
 # Created by http://www.gitignore.io
 
 ### intellij ###
 .idea/
+.tmp-css/
 
 
 ### project ###
 www/
+.editorconfig
 
 ### OSX ###
 .DS_Store
